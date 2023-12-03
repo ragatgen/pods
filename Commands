@@ -1,0 +1,4 @@
+kubectl top pods -l app=cpu-consumer  --sort-by=cpu --no-headers | head -n 1 | awk '{print $1}'  # to get pods comnsuming CPU
+
+kubectl get nodes -o custom-columns='NODE_NAME:.metadata.name,STATUS:.status.conditions[?(@.type=="Ready")].status,TAINT:.spec.taints[?(@.effect=="NoSchedule")].effect' --no-headers | grep -v "NoSchedule"
+
